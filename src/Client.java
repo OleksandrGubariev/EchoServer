@@ -1,25 +1,21 @@
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) throws IOException {
-        Socket socket = new Socket("localhost", 3000);
-        OutputStream outputStream = socket.getOutputStream();
-        InputStream inputStream = socket.getInputStream();
-        Scanner scanner = new Scanner(System.in);
-        String string = scanner.nextLine()+"\n";
-        while (!(string.equals("exit\n"))) {
-            byte [] array = new byte[1024];
-            outputStream.write(string.getBytes());
-            inputStream.read(array);
-            System.out.println(new String(array));
-            string = scanner.nextLine()+"\n";
+        try (Socket socket = new Socket("localhost", 3002);
+             OutputStream outputStream = new BufferedOutputStream(socket.getOutputStream());
+             InputStream inputStream = new BufferedInputStream(socket.getInputStream());
+             InputStream inputStreamConsole = new BufferedInputStream(System.in)) {
+            while (true) {
+                byte[] arrayForOS = new byte[100];
+                byte[] arrayForIS = new byte[100];
+                inputStreamConsole.read(arrayForOS);
+                outputStream.write(arrayForOS);
+                outputStream.flush();
+                inputStream.read(arrayForIS);
+                System.out.println(new String(arrayForIS));
+            }
         }
-        inputStream.close();
-        outputStream.close();
     }
-
 }
