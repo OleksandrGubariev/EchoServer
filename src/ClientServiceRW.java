@@ -13,8 +13,7 @@ public class ClientServiceRW extends Thread {
              BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
 
             while (true) {
-                String string = bufferedReader.readLine();
-                bufferedWriter.write(string);
+                bufferedWriter.write(bufferedReader.readLine());
                 bufferedWriter.write("\n");
                 bufferedWriter.flush();
             }

@@ -9,12 +9,10 @@ public class ClientRW {
             BufferedWriter serverBufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))){
 
             while (true){
-                String string = consoleBufferedReader.readLine();
-                serverBufferedWriter.write(string);
+                serverBufferedWriter.write(consoleBufferedReader.readLine());
                 serverBufferedWriter.write("\n");
                 serverBufferedWriter.flush();
-                string = clientBufferedReader.readLine();
-                System.out.println(string);
+                System.out.println(clientBufferedReader.readLine());
             }
         }
     }
