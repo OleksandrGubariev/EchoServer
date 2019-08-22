@@ -1,3 +1,5 @@
+package com.gubarev.echoserver.withrw;
+
 import java.io.*;
 import java.net.Socket;
 

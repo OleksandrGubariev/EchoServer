@@ -1,3 +1,5 @@
+package com.gubarev.echoserver.withrw;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -9,7 +11,6 @@ public class ServerRW  {
                 try {
                     Socket socket = serverSocket.accept();
                     new ClientServiceRW(socket).start();
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

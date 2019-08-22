@@ -1,3 +1,5 @@
+package com.gubarev.echoserver.withoutrw;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -9,12 +11,17 @@ public class Client {
              InputStream inputStreamConsole = new BufferedInputStream(System.in)) {
             while (true) {
                 byte[] arrayForOS = new byte[100];
-                byte[] arrayForIS = new byte[100];
-                inputStreamConsole.read(arrayForOS);
-                outputStream.write(arrayForOS);
+                int countByte = inputStreamConsole.read(arrayForOS);
+                byte[] buffer = new byte[countByte];
+                int i = 0;
+                while (i < countByte) {
+                    buffer[i] = arrayForOS[i];
+                    i++;
+                }
+                outputStream.write(buffer);
                 outputStream.flush();
-                inputStream.read(arrayForIS);
-                System.out.println(new String(arrayForIS));
+                inputStream.read(buffer);
+                System.out.println(new String(buffer));
             }
         }
     }

@@ -1,3 +1,5 @@
+package com.gubarev.echoserver.withoutrw;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -8,7 +10,7 @@ public class Server {
             while (true) {
                 try {
                     Socket socket = serverSocket.accept();
-                    new Threads(socket).start();
+                    new ClientService(socket).start();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

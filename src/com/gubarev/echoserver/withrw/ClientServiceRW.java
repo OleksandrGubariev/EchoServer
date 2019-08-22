@@ -1,3 +1,5 @@
+package com.gubarev.echoserver.withrw;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -7,6 +9,7 @@ public class ClientServiceRW extends Thread {
     ClientServiceRW(Socket socket) {
         this.socket = socket;
     }
+
     @Override
     public void run() {
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -20,6 +23,12 @@ public class ClientServiceRW extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        try {
+            socket.close();
+        } catch (Exception s) {
+            s.printStackTrace();
+        }
+
 
     }
 }
