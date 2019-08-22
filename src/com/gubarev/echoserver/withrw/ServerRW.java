@@ -10,7 +10,7 @@ public class ServerRW  {
             while (true) {
                 try {
                     Socket socket = serverSocket.accept();
-                    new ClientServiceRW(socket).start();
+                    new Thread(new ClientServiceRW(socket)).start();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

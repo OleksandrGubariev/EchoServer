@@ -3,7 +3,7 @@ package com.gubarev.echoserver.withrw;
 import java.io.*;
 import java.net.Socket;
 
-public class ClientServiceRW extends Thread {
+public class ClientServiceRW implements Runnable {
     private Socket socket;
 
     ClientServiceRW(Socket socket) {

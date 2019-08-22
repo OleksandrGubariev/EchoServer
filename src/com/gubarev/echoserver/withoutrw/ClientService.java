@@ -3,7 +3,7 @@ package com.gubarev.echoserver.withoutrw;
 import java.io.*;
 import java.net.Socket;
 
-public class ClientService extends Thread {
+public class ClientService implements Runnable {
     private Socket socket;
 
     ClientService(Socket clientSocket) {
